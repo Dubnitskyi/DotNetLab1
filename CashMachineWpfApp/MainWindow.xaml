@@ -1,0 +1,127 @@
+﻿<Window x:Class="CashMachineWpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CashMachineWpfApp"
+        mc:Ignorable="d"
+        Title="CashMachine" Height="500" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid x:Name="MainMenu" Visibility="Hidden">
+            <StackPanel Orientation="Vertical">
+                <Label x:Name="MainMenuLabel" Content="Моделювання роботи банкомату" HorizontalContentAlignment="Center" Foreground="#FFBBADA0" FontWeight="Bold" FontSize="32" Margin="0,20,0,20" />
+                <Button x:Name="AuthenticationButton" Content="Аутентифiкацiя" MaxWidth="550" Height="50" MinWidth="100" Margin="20,10,20,20" Background="#FFBBADA0" BorderBrush="Black" Foreground="White" FontWeight="Bold" FontSize="20" VerticalAlignment="Stretch" Click="MainMenuButton_Click"/>
+                <Button x:Name="ExitButton" Content="Вихід" MaxWidth="550" Height="50" MinWidth="100" Margin="20,0,20,20" Background="#FFBBADA0" BorderBrush="Black" Foreground="White" FontWeight="Bold" FontSize="20" Click="MainMenuButton_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="Authentication" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="AuthenticationLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Аутентифікація" HorizontalContentAlignment="Center" Foreground="#FFBBADA0" FontWeight="Bold" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            <TextBlock x:Name="TextBlockForCardNumber" TextWrapping="Wrap" Grid.Row="1" Grid.Column="0" Foreground="#FFBBADA0" FontWeight="Bold" Margin="20,20,20,20" VerticalAlignment="Center" FontSize="16">
+            Введiть номер карти в форматi<LineBreak/>(nnnn-nnnn-nnnn-nnnn)
+            </TextBlock>
+            <TextBox x:Name="CardNumberTextBox" Grid.Row="1" Grid.Column="1" FontSize="16" Margin="40,40,40,40" VerticalContentAlignment="Center" Padding="5,0,0,0"/>
+
+            <TextBlock x:Name="TextBlockForPinCode" TextWrapping="Wrap" Grid.Row="2" Grid.Column="0" Foreground="#FFBBADA0" FontWeight="Bold" Margin="20,20,20,20" VerticalAlignment="Center" FontSize="16">
+            Введiть пiн-код
+            </TextBlock>
+            <PasswordBox x:Name="PinCodePasswordBox" Grid.Row="2" Grid.Column="1" FontSize="16" Margin="40,40,40,40" VerticalContentAlignment="Center" Padding="5,0,0,0"/>
+
+            <Button x:Name="NextButton" Grid.Row="3" Grid.Column="1" Content="Далі" Margin="20,20,20,20" Background="#FFBBADA0" BorderBrush="Black" Foreground="White" FontWeight="Bold" FontSize="28" Click="AuthenticationButton_Click"/>
+            <Button x:Name="BackButton" Grid.Row="3" Grid.Column="0" Content="Назад" Margin="20,20,20,20" Background="#FFBBADA0" BorderBrush="Black" Foreground="White" FontWeight="Bold" FontSize="28" Click="AuthenticationButton_Click"/>
+        </Grid>
+
+        <Grid x:Name="Menu" Visibility="Hidden">
+            <StackPanel Orientation="Vertical">
+                <Label x:Name="MenuLabel" Content="Доступні операції" HorizontalContentAlignment="Center" Foreground="#FFBBADA0" FontWeight="Bold" FontSize="32" Margin="0,20,0,20" />
+                <Button x:Name="ShowBalanceMenuButton" Content="Перегляд балансу на картцi" MaxWidth="550" Height="50" MinWidth="100" Margin="20,10,20,20" Background="#FFBBADA0" BorderBrush="Black" Foreground="White" FontWeight="Bold" FontSize="20" VerticalAlignment="Stretch"  Click="MenuButton_Click"/>
+                <Button x:Name="TakeCashMenuButton" Content="Зняття коштiв" MaxWidth="550" Height="50" MinWidth="100" Margin="20,0,20,20" Background="#FFBBADA0" BorderBrush="Black" Foreground="White" FontWeight="Bold" FontSize="20"  Click="MenuButton_Click"/>
+                <Button x:Name="AddMoneyMenuButton" Content="Зарахування коштiв на картку" MaxWidth="550" Height="50" MinWidth="100" Margin="20,0,20,20" Background="#FFBBADA0" BorderBrush="Black" Foreground="White" FontWeight="Bold" FontSize="20"  Click="MenuButton_Click"/>
+                <Button x:Name="MoneyTransferMenuButton" Content="Перерахування коштiв" MaxWidth="550" Height="50" MinWidth="100" Margin="20,0,20,20" Background="#FFBBADA0" BorderBrush="Black" Foreground="White" FontWeight="Bold" FontSize="20"  Click="MenuButton_Click"/>
+                <Button x:Name="MainMenuMenuButton" Content="Головне меню" MaxWidth="550" Height="50" MinWidth="100" Margin="20,0,20,20" Background="#FFBBADA0" BorderBrush="Black" Foreground="White" FontWeight="Bold" FontSize="20" Click="MenuButton_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="TakeCash" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="TakeCashLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Зняття коштiв" HorizontalContentAlignment="Center" Foreground="#FFBBADA0" FontWeight="Bold" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            <TextBlock x:Name="TextBlockForTakeCash" TextWrapping="Wrap" Grid.Row="1" Grid.Column="0" Foreground="#FFBBADA0" FontWeight="Bold" Margin="20,20,20,20" VerticalAlignment="Center" FontSize="16">
+            Введiть суму для зняття:
+            </TextBlock>
+            <TextBox x:Name="TakeCashTextBox" Grid.Row="1" Grid.Column="1" FontSize="16" Margin="50,50,50,50" VerticalContentAlignment="Center" Padding="5,0,0,0"/>
+
+            <Button x:Name="TakeCashButton" Grid.Row="2" Grid.Column="1" Content="OK" Margin="20,20,20,20" Background="#FFBBADA0" BorderBrush="Black" Foreground="White" FontWeight="Bold" FontSize="28" Click="TakeCashButton_Click"/>
+        </Grid>
+
+        <Grid x:Name="AddMoney" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="AddMoneyLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Зарахування коштiв на картку" HorizontalContentAlignment="Center" Foreground="#FFBBADA0" FontWeight="Bold" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            <TextBlock x:Name="TextBlockForAddMoney" TextWrapping="Wrap" Grid.Row="1" Grid.Column="0" Foreground="#FFBBADA0" FontWeight="Bold" Margin="20,20,20,20" VerticalAlignment="Center" FontSize="16">
+            Введiть суму для зарахування:
+            </TextBlock>
+            <TextBox x:Name="AddMoneyTextBox" Grid.Row="1" Grid.Column="1" FontSize="16" Margin="50,50,50,50" VerticalContentAlignment="Center" Padding="5,0,0,0"/>
+
+            <Button x:Name="AddMoneyButton" Grid.Row="2" Grid.Column="1" Content="OK" Margin="20,20,20,20" Background="#FFBBADA0" BorderBrush="Black" Foreground="White" FontWeight="Bold" FontSize="28" Click="AddMoneyButton_Click"/>
+        </Grid>
+
+        <Grid x:Name="MoneyTransfer" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="MoneyTransferLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Перерахування коштiв" HorizontalContentAlignment="Center" Foreground="#FFBBADA0" FontWeight="Bold" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            <TextBlock x:Name="TextBlockForUserCardNumber" TextWrapping="Wrap" Grid.Row="1" Grid.Column="0" Foreground="#FFBBADA0" FontWeight="Bold" Margin="20,20,20,20" VerticalAlignment="Center" FontSize="16">
+            Перерахування на номер карти:
+            </TextBlock>
+            <TextBox x:Name="UserCardNumberTextBox" Grid.Row="1" Grid.Column="1" FontSize="16" Margin="40,40,40,40" VerticalContentAlignment="Center" Padding="5,0,0,0"/>
+
+            <TextBlock x:Name="TextBlockForMoney" TextWrapping="Wrap" Grid.Row="2" Grid.Column="0" Foreground="#FFBBADA0" FontWeight="Bold" Margin="20,20,20,20" VerticalAlignment="Center" FontSize="16">
+            Введiть суму для перерахування:
+            </TextBlock>
+            <TextBox x:Name="MoneyTextBox" Grid.Row="2" Grid.Column="1" FontSize="16" Margin="40,40,40,40" VerticalContentAlignment="Center" Padding="5,0,0,0"/>
+
+            <Button x:Name="MoneyTransferButton" Grid.Row="3" Grid.Column="1" Content="OK" Margin="20,20,20,20" Background="#FFBBADA0" BorderBrush="Black" Foreground="White" FontWeight="Bold" FontSize="28" Click="MoneyTransferButton_Click"/>
+        </Grid>
+    </Grid>
+</Window>
